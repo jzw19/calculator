@@ -1,0 +1,12 @@
+.historyEntriesContainer {
+    padding-inline: 10px;
+}
+
+.clearHistoryButton {
+    width: 100%;
+    height: 30px;
+}
+
+.historyEntry {
+    width: 100%;
+}

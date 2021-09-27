@@ -1,39 +1,45 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
-.App-header {
-  min-height: 100vh;
+  margin-top: 20vh;
+  min-width: 500px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
 
-.App-link {
-  color: rgb(112, 76, 182);
+.padding {
+  width: 40%;
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.calculatorContainer {
+  text-align: center;
+  width: 60%;
+  min-width: 300px;
+}
+
+.displayColumn, .inputPadColumn {
+  border-left: 1px solid blue;
+  border-right: 1px solid blue;
+  min-width: 300px;
+  padding-block: 20px;
+  background-color: lightblue;
+}
+
+.displayColumn {
+  border-top: 1px solid blue;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.inputPadColumn {
+  border-bottom: 1px solid blue;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.historyContainer {
+  min-width: 200px;
+  border: 1px solid green;
+  border-radius: 8px;
+  margin-right: 20%;
+  background-color: lightgreen;
+  text-align: right;
+  overflow-y: auto;
 }
