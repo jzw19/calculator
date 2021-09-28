@@ -68,13 +68,14 @@ const InputPad = () => {
                 default:
             }
 
+            // TODO: Need to fix equals button and operation sequences
             if(event.target.value === '=') {
                 dispatch(setEntry('0'));
                 dispatch(setHistory([...currentHistory, nextValue]))
                 if(currentOperator !== '=') {
                     dispatch(setValue(nextValue));
-                    setCurrentOperator(event.target.value);
                 }
+                setCurrentOperator(event.target.value);
             } else {
                 dispatch(setCurrentOperator(event.target.value));
             }
