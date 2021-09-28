@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+## Instructions
+1. Clone the repo. You will need to have NPM and Yarn installed. Please follow instructions on their respective websites if this is something you need to do.
+2. You may need to run __yarn install__ to install packages.
+3. Run __yarn start__ to start the application.
+4. Click buttons to interact with the calculator. You cannot type in the display as of right now.
+
 ## Available Scripts
 
 In the project directory, you can run:
