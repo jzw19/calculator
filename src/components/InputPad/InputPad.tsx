@@ -1,14 +1,14 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setValue, setEntry, setCurrentOperator, setHistory } from './InputPadSlice';
 
 import './InputPad.css';
+import React from 'react';
 
 const InputPad = () => {
-    const currentValue = useSelector((state) => state.inputPad.value);
-    const currentEntry = useSelector((state) => state.inputPad.entry);
-    const currentOperator = useSelector((state) => state.inputPad.currentOperator);
-    const currentHistory = useSelector((state) => state.inputPad.history);
+    const currentValue = useSelector<RootStateOrAny, number>((state) => state.inputPad.value);
+    const currentEntry = useSelector<RootStateOrAny, string>((state) => state.inputPad.entry);
+    const currentOperator = useSelector<RootStateOrAny, string | null>((state) => state.inputPad.currentOperator);
+    const currentHistory = useSelector<RootStateOrAny, Array<string>>((state) => state.inputPad.history);
     const dispatch = useDispatch();
 
     const clearAll = () => {
@@ -17,31 +17,31 @@ const InputPad = () => {
         dispatch(setCurrentOperator(null));
     }
 
-    const setCurrentEntry = (event) => {
+    const setCurrentEntry = (event : React.MouseEvent<HTMLButtonElement>) => {
         if(
             currentEntry === null
             || currentEntry === undefined
-            || event.target.value === 'ce'
-            || (currentEntry === '0' && event.target.value === '0')
+            || event.currentTarget.value === 'ce'
+            || (currentEntry === '0' && event.currentTarget.value === '0')
         ) {
             dispatch(setEntry('0'));
         } else if(currentEntry === '0') {
-            dispatch(setEntry(event.target.value));
+            dispatch(setEntry(event.currentTarget.value));
         } else {
-            dispatch(setEntry(currentEntry + event.target.value));
+            dispatch(setEntry(currentEntry + event.currentTarget.value));
         }
     }
 
-    const updateValueAndResetEntry = (updatedValue) => {
+    const updateValueAndResetEntry = (updatedValue : number) => {
         dispatch(setValue(updatedValue));
         dispatch(setEntry('0'));
     }
 
-    const clickOperationButton = (event) => {
+    const clickOperationButton = (event : React.MouseEvent<HTMLButtonElement>) => {
         const correctionFactor = 10000;
         if(!currentOperator) {
             updateValueAndResetEntry(Number.parseFloat(currentEntry));
-            dispatch(setCurrentOperator(event.target.value));
+            dispatch(setCurrentOperator(event.currentTarget.value));
         } else {
             let nextValue = 0;
             switch(currentOperator) {
@@ -69,22 +69,22 @@ const InputPad = () => {
             }
 
             // TODO: Need to fix equals button and operation sequences
-            if(event.target.value === '=') {
+            if(event.currentTarget.value === '=') {
                 dispatch(setEntry('0'));
                 dispatch(setHistory([...currentHistory, nextValue]))
                 if(currentOperator !== '=') {
                     dispatch(setValue(nextValue));
                 }
-                setCurrentOperator(event.target.value);
+                setCurrentOperator(event.currentTarget.value);
             } else {
-                dispatch(setCurrentOperator(event.target.value));
+                dispatch(setCurrentOperator(event.currentTarget.value));
             }
         }
     }
 
-    const togglePositiveNegative = () => dispatch(setEntry(Number.parseFloat(currentEntry * (-1)).toString()));
+    const togglePositiveNegative = () => dispatch(setEntry((Number.parseFloat(currentEntry) * (-1)).toString()));
 
-    const generateNumberButton = (num) => (<button className={`pad ${num}Button`} value={`${num}`} onClick={setCurrentEntry}>{num}</button>);
+    const generateNumberButton = (num : number) => (<button className={`pad ${num}Button`} value={`${num}`} onClick={setCurrentEntry}>{num}</button>);
 
     return(
         <div className='inputPad'>

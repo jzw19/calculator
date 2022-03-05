@@ -1,10 +1,9 @@
-import React from 'react';
-import Display from './components/Display/Display';
-import InputPad from './components/InputPad/InputPad';
-import History from './components/History/History'
+import Display from './components/Display';
+import InputPad from './components/InputPad';
+import History from './components/History';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <table className="calculatorContainer">
@@ -12,21 +11,21 @@ function App() {
           <tr className="displayRow">
             <td className="padding" />
             <td className="displayColumn">
-              <Display className="display"/>
+              <Display />
             </td>
             <td className="padding" />
           </tr>
           <tr className="inputPadRow">
             <td className="padding" />
             <td className="inputPadColumn">
-              <InputPad className="inputPad"/>
+              <InputPad />
             </td>
             <td className="padding" />
           </tr>
         </tbody>
       </table>
       <div className="historyContainer">
-        <History className="history"/>
+        <History />
       </div>
     </div>
   );

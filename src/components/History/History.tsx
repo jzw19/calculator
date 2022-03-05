@@ -1,11 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setHistory } from '../InputPad/InputPadSlice';
 
 import './History.css';
 
 const History = () => {
-    const history = useSelector((state) => state.inputPad.history);
+    const history = useSelector<RootStateOrAny, Array<string>>((state) => state.inputPad.history);
     const dispatch = useDispatch();
 
     const printHistory = () => {
